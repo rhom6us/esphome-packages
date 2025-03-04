@@ -1,0 +1,29 @@
+# In config.yaml
+packages:
+  remote_package_files:
+    url: https://github.com/rhom6us/esphome-packages
+    ref: main
+    # refresh: 1d
+    files:
+      - esp32/qtpy-s3.yaml
+      - name: esphome.yaml
+        vars:
+          api_key: !secret api_key
+          ota_password: !secret ota_password
+      - name: wifi.yaml
+        vars:
+          wifi_ssid: !secret wifi_ssid
+          wifi_password: !secret wifi_password
+          wifi_ssid_2: !secret wifi_ssid_2
+          wifi_password_2: !secret wifi_password_2
+          wifi_ssid_3: !secret wifi_ssid_3
+          wifi_password_3: !secret wifi_password_3
+      - diagnostics.yaml
+      - name: components/media-adf.yaml
+        vars:
+          mic_lr_pin: 1
+          mic_blk_pin: 2
+          mic_dat_pin: 3
+          amp_lr_pin: 4
+          amp_blk_pin: 5
+          amp_dat_pin: 6

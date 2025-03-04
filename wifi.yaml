@@ -1,0 +1,13 @@
+wifi:
+  networks:
+    - ssid: $wifi_ssid
+      password: $wifi_password
+    - ssid: $wifi_ssid_2
+      password: $wifi_password_2
+    - ssid: $wifi_ssid_3
+      password: $wifi_password_3
+
+  ap:
+    ssid: $friendly_name Fallback Hotspot
+
+captive_portal:
