@@ -8,6 +8,6 @@ wifi:
       password: $wifi_password_3
 
   ap:
-    ssid: $friendly_name Fallback Hotspot
+    ssid: $friendly_name
 
 captive_portal:
