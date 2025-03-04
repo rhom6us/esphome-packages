@@ -3,6 +3,8 @@
 esp32:
   board: adafruit_qtpy_esp32s3_n4r2
   variant: ESP32S3
+  framework:
+    type: esp-idf
 # psram:
 #   mode: octal
 #   speed: 120MHz
