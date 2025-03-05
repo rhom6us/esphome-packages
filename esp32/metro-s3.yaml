@@ -1,0 +1,17 @@
+
+
+esp32:
+  board: adafruit_metro_esp32s3
+  variant: ESP32S3
+  framework:
+    type: esp-idf
+# psram:
+#   mode: octal
+#   speed: 120MHz
+
+
+# esphome:
+#   platformio_options:
+# # added the line below to prevent bootloops when flashing modern bin via serial
+#     board_build.flash_mode: dio
+
