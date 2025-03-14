@@ -1,0 +1,5 @@
+esp32:
+  board: adafruit_qtpy_esp32s2
+  variant: ESP32S2
+  framework:
+    type: esp-idf
