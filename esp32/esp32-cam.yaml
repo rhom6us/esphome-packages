@@ -1,7 +1,7 @@
 #SRAM: 512kB; PSRAM: 4Mb; SPI FLASH: 32Mb
 
 esp32:
-  board: esp32dev #esp32cam
+  board: esp32cam #esp32dev
   variant: ESP32
   framework:
     type: esp-idf
