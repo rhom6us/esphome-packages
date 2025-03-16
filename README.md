@@ -14,10 +14,11 @@
   - wifi_ssid_3
   - wifi_password_3
 - ### components/ultrasonic.yaml
-  - trigger_pin
-  - echo_pin
+  - sonar_trigger_pin
+  - sonar_echo_pin
   - #### optional
     - sonor_update_interval: 500ms
+    - sonar_timeout: 4m
 - ### components/media-adf.yaml
   - mic_lr_pin
   - mic_blk_pin

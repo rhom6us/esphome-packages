@@ -1,5 +1,6 @@
 substitutions:
   sonor_update_interval: 500ms
+  sonar_timeout: 4m
 
 globals:
  - id: max_value
@@ -20,9 +21,9 @@ sensor:
   - platform: ultrasonic
     name: "Distance"
     id: subject_distance
-    trigger_pin: $trigger_pin
-    echo_pin: $echo_pin
-    timeout: 4m
+    trigger_pin: $sonar_trigger_pin
+    echo_pin: $sonar_echo_pin
+    timeout: $sonar_timeout
     update_interval: $sonor_update_interval
     filters:
       - lambda: !lambda |-
