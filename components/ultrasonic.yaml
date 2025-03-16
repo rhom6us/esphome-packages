@@ -1,0 +1,81 @@
+substitutions:
+  sonor_update_interval: 500ms
+
+globals:
+ - id: max_value
+   type: float
+   initial_value: '0'
+   restore_value: False
+
+button:
+  - platform: template
+    name: "Reset max_value"
+    on_press:
+      then:
+        - globals.set:
+            id: max_value
+            value: '0'
+sensor:
+  # This is the physical sensor, not published to Home Assistant
+  - platform: ultrasonic
+    name: "Distance"
+    id: subject_distance
+    trigger_pin: $trigger_pin
+    echo_pin: $echo_pin
+    timeout: 4m
+    update_interval: $sonor_update_interval
+    filters:
+      - lambda: !lambda |-
+          if(x > 4) {
+            return {};
+          }
+          return x;
+      - round: 2
+    on_value:
+      then:
+        - lambda: !lambda |-
+            if(x > id(max_value)) {
+              ESP_LOGD("RHOMBUS", "max_value set to %.2f (from %.2f)", x, id(max_value));
+              id(max_value) = x;
+            }
+    unit_of_measurement: "m"
+    device_class: distance
+
+  # - platform: copy
+  #   source_id: subject_distance
+  #   id: max_subject_distance
+  #   name: "Max Value"
+  #   unit_of_measurement: "m"
+  #   device_class: distance
+  #   filters:
+  #     - max:
+  #         window_size: 1200 # 2 mins (while sonor_update_interval=0.5s)
+  #     - delta: 0.01
+  - platform: template
+    update_interval: 1s
+    name: "Max Distance"
+    lambda: return id(max_value);
+    unit_of_measurement: "m"
+    device_class: distance
+
+  - platform: copy
+    name: "Height (raw)"
+    id: subject_height
+    source_id: subject_distance
+    filters:
+      - lambda: return id(max_value) - x;
+    on_value:
+      - lambda: !lambda |-
+          auto total_inches = x * 1000 / 25.4;
+          auto feet = static_cast<int>(total_inches / 12);
+          auto inches = static_cast<int>(total_inches - (feet*12) + 0.5);
+          auto result = to_string(feet) + "' " + to_string(inches) + "\"";
+          id(formated_height).publish_state(result);
+    unit_of_measurement: "m"
+    device_class: distance
+
+
+text_sensor:
+  platform: template
+  id: formated_height
+  name: "Height (formatted)"
