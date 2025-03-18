@@ -29,6 +29,9 @@ binary_sensor:
   - platform: template
     name: Presence Detected
     id: presence_detected
+  - platform: template
+    name: Presence Detected 2
+    id: presence_detected_2
 
 sensor:
   # This is the physical sensor, not published to Home Assistant
@@ -126,9 +129,9 @@ sensor:
     id: subject_height_2
     filters:
       - lambda: return id(ceiling_height).state - x;
-    # on_value:
-    #   - lambda: !lambda |-
-    #       id(presence_detected).publish_state(x > 1);
+    on_value:
+      - lambda: !lambda |-
+          id(presence_detected_2).publish_state(x > 1);
     unit_of_measurement: "m"
     device_class: distance
 ######################################
