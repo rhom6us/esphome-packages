@@ -1,5 +1,8 @@
 # https://github.com/esphome/bluetooth-proxies/blob/main/esp32-generic/esp32-generic-s3.yaml
 
+substitutiuns:
+  ble_proxy_active_scan: 'true'
+
 esphome:
   min_version: 2025.2.1
 
@@ -8,7 +11,7 @@ esp32_ble_tracker:
     # We currently use the defaults to ensure Bluetooth
     # can co-exist with WiFi In the future we may be able to
     # enable the built-in coexistence logic in ESP-IDF
-    active: true
+    active: $ble_proxy_active_scan
 
 bluetooth_proxy:
-  active: true
+  active: $ble_proxy_active_scan

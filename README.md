@@ -13,6 +13,9 @@
   - wifi_password_2
   - wifi_ssid_3
   - wifi_password_3
+- ### components/bluetooth-proxy.yaml
+  - #### optional
+    - ble_proxy_active_scan: false
 - ### components/ultrasonic.yaml
   - sonar_trigger_pin
   - sonar_echo_pin
