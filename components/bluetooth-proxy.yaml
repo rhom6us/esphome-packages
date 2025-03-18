@@ -1,6 +1,6 @@
 # https://github.com/esphome/bluetooth-proxies/blob/main/esp32-generic/esp32-generic-s3.yaml
 
-substitutiuns:
+substitutions:
   ble_proxy_active_scan: 'true'
 
 esphome:
