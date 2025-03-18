@@ -40,11 +40,9 @@ sensor:
     timeout: $sonar_timeout
     update_interval: $sonor_update_interval
     filters:
-      - lambda: !lambda return x > 4 ? {} : 0;
-          // if(x > 4) {
-          //   return {};
-          // }
-          // return x;
+      - lambda: !lambda |-
+          if(x > 4) return {};
+          return x;
       - round: 2 # cm
     on_value:
       then:
