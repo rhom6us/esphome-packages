@@ -22,6 +22,7 @@
   - #### optional
     - sonor_update_interval: 500ms
     - sonar_timeout: 4m
+    - sonar_ceiling_detection_threshold: 10
 - ### components/media-adf.yaml
   - mic_lr_pin
   - mic_blk_pin

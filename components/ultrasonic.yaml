@@ -1,6 +1,7 @@
 substitutions:
   sonor_update_interval: 500ms
   sonar_timeout: 4m
+  sonar_ceiling_detection_threshold: '10'
 
 globals:
   - id: zero_value
@@ -102,7 +103,7 @@ sensor:
     internal: True
     filters:
       - sliding_window_moving_average:
-          window_size: 5
+          window_size: $sonar_ceiling_detection_threshold
           send_every: 1
     unit_of_measurement: "m"
     device_class: distance
