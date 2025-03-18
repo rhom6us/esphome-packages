@@ -28,7 +28,7 @@ button:
 binary_sensor:
   - platform: template
     name: Presence Detected
-    id: presense_detected
+    id: presence_detected
 
 sensor:
   # This is the physical sensor, not published to Home Assistant
