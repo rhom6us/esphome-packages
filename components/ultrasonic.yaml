@@ -3,19 +3,33 @@ substitutions:
   sonar_timeout: 4m
 
 globals:
- - id: max_value
-   type: float
-   initial_value: '0'
-   restore_value: False
+  - id: zero_value
+    type: float
+    initial_value: '0'
+    restore_value: False
+  - id: is_tared
+    type: bool
+    initial_value: 'false'
+    restore_value: false
 
 button:
   - platform: template
-    name: "Reset max_value"
+    name: "Tare"
     on_press:
-      then:
-        - globals.set:
-            id: max_value
-            value: '0'
+      - globals.set:
+          id: zero_value
+          value: !lambda return id(subject_distance).state;
+      - globals.set:
+          id: is_tared
+          value: 'true'
+      # - lambda: |-
+      #     id(zero_value) = id(subject_distance).state;
+      #     id(is_tared) = true;
+binary_sensor:
+  - platform: template
+    name: Presence Detected
+    id: presense_detected
+
 sensor:
   # This is the physical sensor, not published to Home Assistant
   - platform: ultrasonic
@@ -26,36 +40,37 @@ sensor:
     timeout: $sonar_timeout
     update_interval: $sonor_update_interval
     filters:
-      - lambda: !lambda |-
-          if(x > 4) {
-            return {};
-          }
-          return x;
-      - round: 2
+      - lambda: !lambda return x > 4 ? {} : 0;
+          // if(x > 4) {
+          //   return {};
+          // }
+          // return x;
+      - round: 2 # cm
     on_value:
       then:
-        - lambda: !lambda |-
-            if(x > id(max_value)) {
-              ESP_LOGD("RHOMBUS", "max_value set to %.2f (from %.2f)", x, id(max_value));
-              id(max_value) = x;
-            }
+        - if:
+            condition:
+              and:
+                - not:
+                    lambda: return id(is_tared);
+                - lambda: return x > id(zero_value);
+            then:
+              - globals.set:
+                  id: zero_value
+                  value: !lambda return x;
+      # - lambda: !lambda |-
+      #     if(!id(is_tared) && x > id(zero_value)) {
+      #       id(zero_value) = x;
+      #     }
     unit_of_measurement: "m"
     device_class: distance
 
-  # - platform: copy
-  #   source_id: subject_distance
-  #   id: max_subject_distance
-  #   name: "Max Value"
-  #   unit_of_measurement: "m"
-  #   device_class: distance
-  #   filters:
-  #     - max:
-  #         window_size: 1200 # 2 mins (while sonor_update_interval=0.5s)
-  #     - delta: 0.01
+
+  # This is just for publishing. Remove in prod.
   - platform: template
     update_interval: 1s
-    name: "Max Distance"
-    lambda: return id(max_value);
+    name: "Ceiling Height"
+    lambda: return id(zero_value);
     unit_of_measurement: "m"
     device_class: distance
 
@@ -64,7 +79,7 @@ sensor:
     id: subject_height
     source_id: subject_distance
     filters:
-      - lambda: return id(max_value) - x;
+      - lambda: return id(zero_value) - x;
     on_value:
       - lambda: !lambda |-
           auto total_inches = x * 1000 / 25.4;
@@ -72,9 +87,49 @@ sensor:
           auto inches = static_cast<int>(total_inches - (feet*12) + 0.5);
           auto result = to_string(feet) + "' " + to_string(inches) + "\"";
           id(formated_height).publish_state(result);
+
+          id(presence_detected).publish_state(x > 1);
+
     unit_of_measurement: "m"
     device_class: distance
 
+
+############ alt method ############
+  - platform: copy
+    source_id: subject_distance
+    id: avg_subject_distance
+    internal: True
+    filters:
+      - sliding_window_moving_average:
+          window_size: 5
+          send_every: 1
+          send_first_at: 5
+
+  - platform: copy
+    source_id: subject_distance
+    name: "Ceiling Height 2"
+    id: ceiling_height
+    # internal: true
+    unit_of_measurement: "m"
+    device_class: distance
+    filters:
+      - lambda: return x == id(avg_subject_distance).state ? x : {};
+      - max:
+          window_size: 1200 # 2 mins (while sonor_update_interval=0.5s)
+
+
+  - platform: copy
+    source_id: subject_distance
+    name: "Height 2 (raw)"
+    id: subject_height_2
+    filters:
+      - lambda: return id(ceiling_height).state - x;
+    # on_value:
+    #   - lambda: !lambda |-
+    #       id(presence_detected).publish_state(x > 1);
+    unit_of_measurement: "m"
+    device_class: distance
+######################################
 
 text_sensor:
   platform: template
