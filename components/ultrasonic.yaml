@@ -111,7 +111,10 @@ sensor:
     id: ceiling_height
     # internal: true
     filters:
-      - lambda: return x == id(avg_subject_distance).state ? x : {};
+      - lambda: |-
+          if(x == id(avg_subject_distance).state)
+            return x;
+          return {};
       - max:
           window_size: 1200 # 2 mins (while sonor_update_interval=0.5s)
     unit_of_measurement: "m"
