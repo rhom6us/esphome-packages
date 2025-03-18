@@ -101,7 +101,6 @@ sensor:
       - sliding_window_moving_average:
           window_size: 5
           send_every: 1
-          send_first_at: 5
     unit_of_measurement: "m"
     device_class: distance
 
