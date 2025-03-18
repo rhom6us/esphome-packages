@@ -82,11 +82,11 @@ sensor:
       - lambda: return id(zero_value) - x;
     on_value:
       - lambda: !lambda |-
-          auto total_inches = x * 1000 / 25.4;
-          auto feet = static_cast<int>(total_inches / 12);
-          auto inches = static_cast<int>(total_inches - (feet*12) + 0.5);
-          auto result = to_string(feet) + "' " + to_string(inches) + "\"";
-          id(formated_height).publish_state(result);
+          // auto total_inches = x * 1000 / 25.4;
+          // auto feet = static_cast<int>(total_inches / 12);
+          // auto inches = static_cast<int>(total_inches - (feet*12) + 0.5);
+          // auto result = to_string(feet) + "' " + to_string(inches) + "\"";
+          // id(formated_height).publish_state(result);
 
           id(presence_detected).publish_state(x > 1);
 
@@ -104,18 +104,20 @@ sensor:
           window_size: 5
           send_every: 1
           send_first_at: 5
+    unit_of_measurement: "m"
+    device_class: distance
 
   - platform: copy
     source_id: subject_distance
     name: "Ceiling Height 2"
     id: ceiling_height
     # internal: true
-    unit_of_measurement: "m"
-    device_class: distance
     filters:
       - lambda: return x == id(avg_subject_distance).state ? x : {};
       - max:
           window_size: 1200 # 2 mins (while sonor_update_interval=0.5s)
+    unit_of_measurement: "m"
+    device_class: distance
 
 
   - platform: copy
@@ -131,7 +133,7 @@ sensor:
     device_class: distance
 ######################################
 
-text_sensor:
-  platform: template
-  id: formated_height
-  name: "Height (formatted)"
+# text_sensor:
+#   platform: template
+#   id: formated_height
+#   name: "Height (formatted)"
