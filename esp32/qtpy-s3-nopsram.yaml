@@ -1,6 +1,6 @@
 substitutions:
-  led_builtin_use_psram: 'true'
-  led_builtin_rmt_channel: '0'
+  led_builtin_name: 'Built-in Neopixel'
+  led_builtin_id: led_builtin
 
 
 esp32:
@@ -17,14 +17,11 @@ light:
   - platform: esp32_rmt_led_strip
     rgb_order: GRB
     is_rgbw: True
-    # use_psram: false
     pin: GPIO39
     power_supply: led_builtin_power
     num_leds: 1
-    # rmt_channel: 0
     chipset: SK6812 # ws2812
-    name: Built-in Neopixel
-    id: led_builtin
-    use_psram: $led_builtin_use_psram
-    rmt_channel: $led_builtin_rmt_channel
+
+    name: $led_builtin_name
+    id: $led_builtin_id
 

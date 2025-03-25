@@ -4,12 +4,15 @@ binary_sensor:
   - platform: status
     name: "Node Status"
     id: system_status
+    entity_category: "diagnostic"
+    device_class: connectivity
 
 sensor:
   - platform: uptime
     type: seconds
     name: Uptime Sensor
     entity_category: "diagnostic"
+    device_class: duration
 
   # Reports the WiFi signal strength/RSSI in dB
   - platform: wifi_signal
@@ -17,16 +20,7 @@ sensor:
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
-
-  # Reports the WiFi signal strength in %
-  - platform: copy
-    source_id: wifi_signal_db
-    name: "WiFi Signal Percent"
-    filters:
-      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "Signal %"
-    entity_category: "diagnostic"
-    device_class: ""
+    device_class: signal_strength
 
 
 button:
@@ -45,3 +39,4 @@ button:
   - platform: restart
     name: "Restart"
     entity_category: "diagnostic"
+    device_class: restart
