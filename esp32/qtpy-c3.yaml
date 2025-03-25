@@ -9,6 +9,8 @@ esp32:
   framework:
     type: esp-idf
 
+wifi:
+  output_power: 8.5
 
 light:
   - platform: esp32_rmt_led_strip
