@@ -1,5 +1,25 @@
+substitutions:
+  led_builtin_use_psram: 'true'
+  led_builtin_rmt_channel: '0'
+
+
 esp32:
   board: adafruit_qtpy_esp32c3
   variant: ESP32C3
   framework:
     type: esp-idf
+
+
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    is_rgbw: True
+    # use_psram: false
+    pin: 2
+    num_leds: 1
+    # rmt_channel: 0
+    chipset: SK6812 # ws2812
+    name: Built-in Neopixel
+    id: led_builtin
+    use_psram: $led_builtin_use_psram
+    rmt_channel: $led_builtin_rmt_channel

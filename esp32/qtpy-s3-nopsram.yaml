@@ -1,3 +1,6 @@
+substitutions:
+  led_builtin_use_psram: 'true'
+  led_builtin_rmt_channel: '0'
 
 
 esp32:
@@ -5,13 +8,23 @@ esp32:
   variant: ESP32S3
   framework:
     type: esp-idf
-# psram:
-#   mode: octal
-#   speed: 120MHz
 
 
-# esphome:
-#   platformio_options:
-# # added the line below to prevent bootloops when flashing modern bin via serial
-#     board_build.flash_mode: dio
+power_supply:
+  - id: led_builtin_power
+    pin: GPIO38
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    is_rgbw: True
+    # use_psram: false
+    pin: GPIO39
+    power_supply: led_builtin_power
+    num_leds: 1
+    # rmt_channel: 0
+    chipset: SK6812 # ws2812
+    name: Built-in Neopixel
+    id: led_builtin
+    use_psram: $led_builtin_use_psram
+    rmt_channel: $led_builtin_rmt_channel
 
