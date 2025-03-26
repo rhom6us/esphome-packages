@@ -1,5 +1,14 @@
+substitutions:
+  led_builtin_name: 'Status LED'
+  led_builtin_id: led_builtin
+
 esp32:
   board: esp32dev
   variant: ESP32
   framework:
     type: esp-idf
+light:
+  - platform: status_led
+    name: $led_builtin_name
+    id: led_builtin
+    pin: 2
