@@ -25,3 +25,21 @@ light:
     name: $led_builtin_name
     id: $led_builtin_id
     use_psram: $led_builtin_use_psram
+
+# https://learn.adafruit.com/adafruit-qt-py-esp32-s2/pinouts
+
+#   _______________________
+# ||-----------------------||
+# || 18 < A0  |-|  5V >    ||
+# || 17 < A1  |-| GND >    ||
+# ||  9 < A2  |-|  3V >    ||
+# ||  8 < A3  |-|  MO > 35 ||
+# ||  7 < SDA |-|  MI > 37 ||
+# ||  6 < SCL |-| SCK > 36 ||
+# ||  5 < TX  |-|  RX > 16 ||
+# ||-----------------------||
+# || NEOPIXEL_power > 38   ||
+# || NEOPIXEL > 39         ||
+# || SWITCH > 9            ||
+# ||_______________________||
+#   -----------------------
