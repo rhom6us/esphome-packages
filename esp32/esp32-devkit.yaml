@@ -10,5 +10,5 @@ esp32:
 light:
   - platform: status_led
     name: $led_builtin_name
-    id: led_builtin
+    id: $led_builtin_id
     pin: 2

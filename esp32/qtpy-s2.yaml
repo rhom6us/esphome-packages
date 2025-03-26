@@ -3,7 +3,7 @@ substitutions:
   led_builtin_name: 'Built-in Neopixel'
   led_builtin_id: led_builtin
 
-
+# 4 MB flash and 2 MB PSRAM
 esp32:
   board: adafruit_qtpy_esp32s2
   variant: ESP32S2

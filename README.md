@@ -46,6 +46,8 @@
     - `led_builtin_name`: "Flash"
     - `led_builtin_id`: led_builtin
 - ### esp32/esp32-devkit.yaml
+    - `led_builtin_name`: "Status LED"
+    - `led_builtin_id`: led_builtin
 - ### esp32/metro-s3.yaml
   - #### optional:
     - `led_builtin_use_psram`: true
@@ -53,7 +55,6 @@
     - `led_builtin_id`: led_builtin
 - ### esp32/qtpy-c3.yaml
   - #### optional:
-    - `led_builtin_use_psram`: true
     - `led_builtin_name`: "Built-in Neopixel"
     - `led_builtin_id`: led_builtin
 - ### esp32/qtpy-s2.yaml

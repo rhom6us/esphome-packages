@@ -1,5 +1,4 @@
 substitutions:
-  led_builtin_use_psram: 'true'
   led_builtin_name: 'Built-in Neopixel'
   led_builtin_id: led_builtin
 
@@ -23,4 +22,3 @@ light:
 
     name: $led_builtin_name
     id: $led_builtin_id
-    use_psram: $led_builtin_use_psram
