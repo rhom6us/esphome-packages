@@ -51,12 +51,3 @@ binary_sensor:
     pin: 0
     name: $button_builtin_name
     internal: $button_builtin_internal
-
-sensor:
-  - platform: max17048
-    battery_voltage:
-      name: Battery voltage
-    battery_level:
-      name: Battery level
-    rate:
-      name: Battery discharge rate
