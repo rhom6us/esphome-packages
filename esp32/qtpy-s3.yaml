@@ -6,6 +6,11 @@ substitutions:
   button_builtin_internal: 'true'
 
 
+external_components:
+  - source: github://Option-Zero/esphome-components@max17048
+    components: [max17048]
+
+
 esp32:
   board: adafruit_qtpy_esp32s3_n4r2
   variant: ESP32S3
@@ -46,3 +51,12 @@ binary_sensor:
     pin: 0
     name: $button_builtin_name
     internal: $button_builtin_internal
+
+sensor:
+  - platform: max17048
+    battery_voltage:
+      name: Battery voltage
+    battery_level:
+      name: Battery level
+    rate:
+      name: Battery discharge rate
