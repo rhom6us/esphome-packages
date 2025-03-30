@@ -42,7 +42,6 @@
     - `sonar_ceiling_detection_threshold`: 10
 - ### esp32/esp32-cam.yaml
   - #### optional:
-    - `led_builtin_use_psram`: true
     - `led_builtin_name`: "Flash"
     - `led_builtin_internal`: true
     - `button_builtin_name`: "Built-in Button"

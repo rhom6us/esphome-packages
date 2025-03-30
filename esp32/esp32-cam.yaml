@@ -1,6 +1,5 @@
 #SRAM: 512kB; PSRAM: 4Mb; SPI FLASH: 32Mb
 substitutions:
-  led_builtin_use_psram: 'true'
   led_builtin_name: 'Flash'
   led_builtin_internal: 'true'
   button_builtin_name: 'Built-in Button'
@@ -25,7 +24,9 @@ esp32_camera:
   name: "${friendly_name}"
   internal: true
   external_clock:
-    pin: 0
+    pin:
+      number: 0
+      allow_other_uses: true
     frequency: 20MHz
   i2c_pins:
     sda: 26
@@ -36,18 +37,25 @@ esp32_camera:
   power_down_pin: 32
   data_pins: [5, 18, 19, 21, 36, 39, 34, 35]
 
-light:
-  - platform: status_led
-    id: led_builtin
-    pin: 4
+output:
+  - platform: gpio
+    id: led_builtin_output
+    pin:
+      number: 4
+      allow_other_uses: true
 
-    use_psram: $led_builtin_use_psram
+light:
+  - platform: binary
+    id: led_builtin
+    output: led_builtin_output
     name: $led_builtin_name
     internal: $led_builtin_internal
 
 binary_sensor:
   - platform: gpio
     id: button_builtin
-    pin: 0
+    pin:
+      number: 0
+      allow_other_uses: true
     name: $button_builtin_name
     internal: $button_builtin_internal
