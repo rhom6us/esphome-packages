@@ -44,30 +44,47 @@
   - #### optional:
     - `led_builtin_use_psram`: true
     - `led_builtin_name`: "Flash"
-    - `led_builtin_id`: led_builtin
+    - `led_builtin_internal`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/esp32-devkit.yaml
+  - #### optional:
     - `led_builtin_name`: "Status LED"
-    - `led_builtin_id`: led_builtin
+    - `led_builtin_internal`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/metro-s3.yaml
   - #### optional:
-    - `led_builtin_use_psram`: true
-    - `led_builtin_name`: "Built-in Neopixel"
-    - `led_builtin_id`: led_builtin
+    - `led_builtin_name`: "Status LED"
+    - `led_builtin_internal`: true
+    - `neopixel_builtin_name`: "Built-in Neopixel"
+    - `neopixel_builtin_internal`: true
+    - `neopixel_builtin_use_psram`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/qtpy-c3.yaml
   - #### optional:
-    - `led_builtin_name`: "Built-in Neopixel"
-    - `led_builtin_id`: led_builtin
+    - `neopixel_builtin_name`: "Built-in Neopixel"
+    - `neopixel_builtin_internal`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/qtpy-s2.yaml
   - #### optional:
-    - `led_builtin_use_psram`: true
-    - `led_builtin_name`: "Built-in Neopixel"
-    - `led_builtin_id`: led_builtin
+    - `neopixel_builtin_name`: "Built-in Neopixel"
+    - `neopixel_builtin_internal`: true
+    - `neopixel_builtin_use_psram`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/qtpy-s3-nopsram.yaml
   - #### optional:
-    - `led_builtin_name`: "Built-in Neopixel"
-    - `led_builtin_id`: led_builtin
+    - `neopixel_builtin_name`: "Built-in Neopixel"
+    - `neopixel_builtin_internal`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true
 - ### esp32/qtpy-s3.yaml
   - #### optional:
-    - `led_builtin_use_psram`: true
-    - `led_builtin_name`: "Built-in Neopixel"
-    - `led_builtin_id`: led_builtin
+    - `neopixel_builtin_name`: "Built-in Neopixel"
+    - `neopixel_builtin_internal`: true
+    - `neopixel_builtin_use_psram`: true
+    - `button_builtin_name`: "Built-in Button"
+    - `button_builtin_internal`: true

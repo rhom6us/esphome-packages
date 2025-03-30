@@ -1,6 +1,8 @@
 substitutions:
-  led_builtin_name: 'Built-in Neopixel'
-  led_builtin_id: led_builtin
+  neopixel_builtin_name: 'Built-in Neopixel'
+  neopixel_builtin_internal: 'true'
+  button_builtin_name: 'Built-in Button'
+  button_builtin_internal: 'true'
 
 
 esp32:
@@ -11,17 +13,25 @@ esp32:
 
 
 power_supply:
-  - id: led_builtin_power
-    pin: GPIO38
+  - id: neopixel_builtin_power
+    pin: NEOPIXEL_POWER
 light:
   - platform: esp32_rmt_led_strip
+    id: neopixel_builtin
     rgb_order: GRB
     is_rgbw: True
-    pin: GPIO39
-    power_supply: led_builtin_power
+    pin: NEOPIXEL
+    power_supply: neopixel_builtin_power
     num_leds: 1
     chipset: SK6812 # ws2812
 
-    name: $led_builtin_name
-    id: $led_builtin_id
+    name: $neopixel_builtin_name
+    internal: $neopixel_builtin_internal
+
+binary_sensor:
+  - platform: gpio
+    pin: BUTTON
+    id: button_builtin
+    name: $button_builtin_name
+    internal: $button_builtin_internal
 

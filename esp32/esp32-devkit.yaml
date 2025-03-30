@@ -1,6 +1,8 @@
 substitutions:
   led_builtin_name: 'Status LED'
-  led_builtin_id: led_builtin
+  led_builtin_internal: 'true'
+  button_builtin_name: 'Built-in Button'
+  button_builtin_internal: 'true'
 
 esp32:
   board: esp32dev
@@ -9,6 +11,16 @@ esp32:
     type: esp-idf
 light:
   - platform: status_led
-    name: $led_builtin_name
-    id: $led_builtin_id
+    id: led_builtin
     pin: 2
+
+    name: $led_builtin_name
+    internal: $led_builtin_internal
+
+
+binary_sensor:
+  - platform: gpio
+    id: button_builtin
+    pin: 0
+    name: $button_builtin_name
+    internal: $button_builtin_internal

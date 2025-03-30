@@ -1,8 +1,9 @@
 substitutions:
-  led_builtin_use_psram: 'true'
-  led_builtin_name: 'Built-in Neopixel'
-  led_builtin_id: led_builtin
-
+  neopixel_builtin_use_psram: 'true'
+  neopixel_builtin_name: 'Built-in Neopixel'
+  neopixel_builtin_internal: 'true'
+  button_builtin_name: 'Built-in Button'
+  button_builtin_internal: 'true'
 # 4 MB flash and 2 MB PSRAM
 esp32:
   board: adafruit_qtpy_esp32s2
@@ -11,20 +12,28 @@ esp32:
     type: esp-idf
 
 power_supply:
-  - id: led_builtin_power
-    pin: GPIO38
+  - id: neopixel_builtin_power
+    pin: NEOPIXEL_POWER #GPIO38
 light:
   - platform: esp32_rmt_led_strip
+    id: neopixel_builtin
     rgb_order: GRB
     is_rgbw: True
-    pin: GPIO39
-    power_supply: led_builtin_power
+    pin: NEOPIXEL #GPIO39
+    power_supply: neopixel_builtin_power
     num_leds: 1
     chipset: SK6812 # ws2812
 
-    name: $led_builtin_name
-    id: $led_builtin_id
-    use_psram: $led_builtin_use_psram
+    name: $neopixel_builtin_name
+    use_psram: $neopixel_builtin_use_psram
+    internal: $neopixel_builtin_internal
+
+binary_sensor:
+  - platform: gpio
+    id: button_builtin
+    pin: BUTTON
+    name: $button_builtin_name
+    internal: $button_builtin_internal
 
 # https://learn.adafruit.com/adafruit-qt-py-esp32-s2/pinouts
 

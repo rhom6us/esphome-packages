@@ -1,7 +1,11 @@
 substitutions:
-  led_builtin_use_psram: 'true'
-  led_builtin_name: 'Built-in Neopixel'
-  led_builtin_id: led_builtin
+  led_builtin_name: 'Status LED'
+  led_builtin_internal: 'true'
+  neopixel_builtin_use_psram: 'true'
+  neopixel_builtin_name: 'Built-in Neopixel'
+  neopixel_builtin_internal: 'true'
+  button_builtin_name: 'Built-in Button'
+  button_builtin_internal: 'true'
 
 esp32:
   board: adafruit_metro_esp32s3
@@ -14,13 +18,28 @@ esp32:
 
 
 light:
+
+  - platform: status_led
+    id: led_builtin
+    pin: 13
+    name: $led_builtin_name
+    internal: $led_builtin_internal
+
   - platform: esp32_rmt_led_strip
+    id: neopixel_builtin
     rgb_order: GRB
     is_rgbw: True
-    pin: GPIO46
+    pin: 46
     num_leds: 1
     chipset: SK6812 # ws2812
 
-    name: $led_builtin_name
-    id: $led_builtin_id
-    use_psram: $led_builtin_use_psram
+    name: $neopixel_builtin_name
+    use_psram: $neopixel_builtin_use_psram
+    internal: $neopixel_builtin_internal
+
+binary_sensor:
+  - platform: gpio
+    id: button_builtin
+    pin: 0
+    name: $button_builtin_name
+    internal: $button_builtin_internal
