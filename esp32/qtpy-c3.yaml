@@ -14,17 +14,17 @@ esp32:
 wifi:
   output_power: 8.5
 
-light:
-  - platform: esp32_rmt_led_strip
-    id: neopixel_builtin
-    rgb_order: GRB
-    is_rgbw: True
-    pin: NEOPIXEL
-    num_leds: 1
-    chipset: ws2812 #SK6812
+# light:
+#   - platform: esp32_rmt_led_strip
+#     id: neopixel_builtin
+#     rgb_order: GRB
+#     is_rgbw: True
+#     pin: NEOPIXEL
+#     num_leds: 1
+#     chipset: ws2812 #SK6812
 
-    name: $neopixel_builtin_name
-    internal: $neopixel_builtin_internal
+#     name: $neopixel_builtin_name
+#     internal: $neopixel_builtin_internal
 
 binary_sensor:
   - platform: gpio
