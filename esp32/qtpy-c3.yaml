@@ -26,12 +26,12 @@ wifi:
 #     name: $neopixel_builtin_name
 #     internal: $neopixel_builtin_internal
 
-binary_sensor:
-  - platform: gpio
-    id: button_builtin
-    pin:
-      number: BUTTON
-      mode: INPUT_PULLUP
-      inverted: true
-    name: $button_builtin_name
-    internal: $button_builtin_internal
+# binary_sensor:
+#   - platform: gpio
+#     id: button_builtin
+#     pin:
+#       number: BUTTON
+#       mode: INPUT_PULLUP
+#       inverted: true
+#     name: $button_builtin_name
+#     internal: $button_builtin_internal
