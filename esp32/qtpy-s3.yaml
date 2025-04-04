@@ -38,10 +38,9 @@ light:
     power_supply: neopixel_builtin_power
     num_leds: 1
     # rmt_channel: 0
-    chipset: SK6812 # ws2812
+    chipset: ws2812 #SK6812
 
     name: $neopixel_builtin_name
-    id: $neopixel_builtin_id
     use_psram: $neopixel_builtin_use_psram
     internal: $neopixel_builtin_internal
 
