@@ -21,7 +21,7 @@ light:
     is_rgbw: True
     pin: NEOPIXEL
     num_leds: 1
-    chipset: SK6812 # ws2812
+    chipset: ws2812 #SK6812
 
     name: $neopixel_builtin_name
     internal: $neopixel_builtin_internal
@@ -29,6 +29,9 @@ light:
 binary_sensor:
   - platform: gpio
     id: button_builtin
-    pin: BUTTON
+    pin:
+      number: BUTTON
+      mode: INPUT_PULLUP
+      inverted: true
     name: $button_builtin_name
     internal: $button_builtin_internal
