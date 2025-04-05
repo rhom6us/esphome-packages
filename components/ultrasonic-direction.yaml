@@ -17,16 +17,16 @@ text_sensor:
     internal: false
     update_interval: $sonar_direction_idle_time
     lambda: |-
-      switch(id(sonar_direction).state) {
+      switch(static_cast<int>(id(sonar_direction).state)) {
         case -1:
-          return "descending";
+          return {"descending"};
         case 1:
-          return "ascending";
+          return {"ascending"};
         case 0:
-          return "idle";
+          return {"idle"};
 
         default:
-          return "wtf";
+          return {"wtf"};
       }
 sensor:
   - platform: template
