@@ -3,7 +3,7 @@ substitutions:
   sonar_timeout: 4m
   sonar_id: subject_distance
   sonar_name: "Distance"
-  sonar_internal: true
+  sonar_internal: 'true'
   sonar_direction_idle_time: 1s
   #required:
   #  sonar_trigger_pin
