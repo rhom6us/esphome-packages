@@ -44,18 +44,15 @@ sensor:
     timeout: $sonar_timeout
     update_interval: $sonor_update_interval
     filters:
-      - lambda: !lambda |-
-          if(x > 4) return {};
-          return x;
+      - clamp:
+          max_value: 4
+          ignore_out_of_range: true
       - round: 2 # cm
     on_value:
       then:
         - if:
             condition:
-              and:
-                - not:
-                    lambda: return id(is_tared);
-                - lambda: return x > id(zero_value);
+              - lambda: return !id(is_tared) && x > id(zero_value);
             then:
               - globals.set:
                   id: zero_value
