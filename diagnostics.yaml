@@ -1,4 +1,20 @@
+
+substitutions:
+  node_status_disabled: false
+  uptime_seconds_disabled: false
+  wifi_signal_disabled: false
+  esphome_version_disabled: false
+  uptime_text_disabled: false
+  wifi_info_text_disabled: false
+  esphome_project_version_disabled: false
+  esphome_project_version_detailed_disabled: false
+  esphome_project_name_disabled: false
+
 logger:
+
+select:
+  - platform: logger
+    name: "Logger select"
 
 binary_sensor:
   - platform: status
@@ -6,6 +22,7 @@ binary_sensor:
     id: system_status
     entity_category: "diagnostic"
     device_class: connectivity
+    disabled_by_default: $node_status_disabled
 
 sensor:
   - platform: uptime
@@ -13,15 +30,76 @@ sensor:
     name: Uptime Sensor
     entity_category: "diagnostic"
     device_class: duration
+    disabled_by_default: $uptime_seconds_disabled
 
-  # Reports the WiFi signal strength/RSSI in dB
   - platform: wifi_signal
     name: "WiFi Signal dB"
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
     device_class: signal_strength
+    disabled_by_default: $wifi_signal_disabled
+text_sensor:
+  - platform: version
+    name: "ESPHome Version"
+    disabled_by_default: $esphome_version_disabled
+  - platform: uptime
+    name: Uptime
+    disabled_by_default: $uptime_text_disabled
+  - platform: wifi_info
+    disabled_by_default: $wifi_info_text_disabled
+    ip_address:
+      name: ESP IP Address
+      address_0:
+        name: ESP IP Address 0
+      address_1:
+        name: ESP IP Address 1
+      address_2:
+        name: ESP IP Address 2
+      address_3:
+        name: ESP IP Address 3
+      address_4:
+        name: ESP IP Address 4
+    ssid:
+      name: ESP Connected SSID
+    bssid:
+      name: ESP Connected BSSID
+    mac_address:
+      name: ESP Mac Wifi Address
+    scan_results:
+      name: ESP Latest Scan Results
+    dns_address:
+      name: ESP DNS Address
 
+  - platform: template
+    name: "ESPHome Project Version"
+    id: esphome_project_version_text_short
+    disabled_by_default: $esphome_project_version_disabled
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_VERSION };
+
+  - platform: template
+    name: "ESPHome Project Version Detailed"
+    id: esphome_project_version_text_detailed
+    disabled_by_default: $esphome_project_version_detailed_disabled
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
+
+  - platform: template
+    name: "ESPHome Project Name"
+    id: esphome_project_name
+    disabled_by_default: $esphome_project_name_disabled
+    icon: "mdi:information-box"
+    entity_category: "diagnostic"
+    update_interval: 600s
+    lambda: |-
+      return { ESPHOME_PROJECT_NAME };
 
 button:
   - platform: safe_mode
