@@ -49,6 +49,16 @@
     - `sonor_update_interval`: 500ms
     - `sonar_timeout`: 4m
     - `sonar_ceiling_detection_threshold`: 10
+- ### components/ultrasonic_direction.yaml
+  - `sonar_trigger_pin`
+  - `sonar_echo_pin`
+  - #### optional:
+    - `sonar_update_interval`: 500ms
+    - `sonar_timeout`: 4m
+    - `sonar_id`: subject_distance
+    - `sonar_name`: "Distance"
+    - `sonar_internal`: true
+    - `sonar_direction_idle_time`: 1s
 - ### esp32/esp32-cam.yaml
   - #### optional:
     - `led_builtin_name`: "Flash"

@@ -1,0 +1,80 @@
+substitutions:
+  sonar_update_interval: 500ms
+  sonar_timeout: 4m
+  sonar_id: subject_distance
+  sonar_name: "Distance"
+  sonar_internal: true
+  sonar_direction_idle_time: 1s
+  #required:
+  #  sonar_trigger_pin
+  #  sonar_echo_pin
+
+
+text_sensor:
+  - platform: template
+    id: sonar_direction_text
+    name: Sonar Direction
+    internal: false
+    update_interval: $sonar_direction_idle_time
+    lambda: |-
+      switch(id(sonar_direction).state) {
+        case -1:
+          return "descending";
+        case 1:
+          return "ascending";
+        case 0:
+          return "idle";
+
+        default:
+          return "wtf";
+      }
+sensor:
+  - platform: template
+    id: sonar_direction
+    filters:
+      - timeout:
+          timeout: $sonar_direction_idle_time
+          value: !lambda return 0;
+    internal: true
+
+
+  - platform: ultrasonic
+    name: $sonar_name
+    id: $sonar_id
+    internal: $sonar_internal
+    trigger_pin: $sonar_trigger_pin
+    echo_pin: $sonar_echo_pin
+    timeout: $sonar_timeout
+    update_interval: $sonar_update_interval
+    filters:
+      # - calibrate_polynomial:
+      #     degree: 2
+      #     datapoints:
+      #       # Map 0.0 (from sensor) to 0.0 (true value)
+      #       - 0.0 -> 0.0
+      #       - 10.0 -> 12.1
+      #       - 13.0 -> 14.0
+
+      # - round: 2 #cm
+      # - delta: 0.01
+
+      - lambda: return x * 1000 / 25.4;
+      - round: 1
+      - delta: 0.1
+    unit_of_measurement: "in"
+    on_value:
+      then:
+        - lambda: !lambda |-
+            static auto prev = x;
+
+            if(x > prev){
+              id(sonar_direction).publish_state(1);
+            } else if(x < prev){
+              id(sonar_direction).publish_state(-1);
+            } else {
+              id(sonar_direction).publish_state(0);
+            }
+
+            prev = x;
+    device_class: distance
+
