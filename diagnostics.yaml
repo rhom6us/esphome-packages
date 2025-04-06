@@ -69,35 +69,35 @@ text_sensor:
     dns_address:
       name: ESP DNS Address
 
-  - platform: template
-    name: "ESPHome Project Version"
-    id: esphome_project_version_text_short
-    disabled_by_default: $esphome_project_version_disabled
-    icon: "mdi:information-box"
-    entity_category: "diagnostic"
-    update_interval: 600s
-    lambda: |-
-      return { ESPHOME_PROJECT_VERSION };
+  # - platform: template
+  #   name: "ESPHome Project Version"
+  #   id: esphome_project_version_text_short
+  #   disabled_by_default: $esphome_project_version_disabled
+  #   icon: "mdi:information-box"
+  #   entity_category: "diagnostic"
+  #   update_interval: 600s
+  #   lambda: |-
+  #     return { ESPHOME_PROJECT_VERSION };
 
-  - platform: template
-    name: "ESPHome Project Version Detailed"
-    id: esphome_project_version_text_detailed
-    disabled_by_default: $esphome_project_version_detailed_disabled
-    icon: "mdi:information-box"
-    entity_category: "diagnostic"
-    update_interval: 600s
-    lambda: |-
-      return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
+  # - platform: template
+  #   name: "ESPHome Project Version Detailed"
+  #   id: esphome_project_version_text_detailed
+  #   disabled_by_default: $esphome_project_version_detailed_disabled
+  #   icon: "mdi:information-box"
+  #   entity_category: "diagnostic"
+  #   update_interval: 600s
+  #   lambda: |-
+  #     return { ESPHOME_PROJECT_VERSION " " + App.get_compilation_time() };
 
-  - platform: template
-    name: "ESPHome Project Name"
-    id: esphome_project_name
-    disabled_by_default: $esphome_project_name_disabled
-    icon: "mdi:information-box"
-    entity_category: "diagnostic"
-    update_interval: 600s
-    lambda: |-
-      return { ESPHOME_PROJECT_NAME };
+  # - platform: template
+  #   name: "ESPHome Project Name"
+  #   id: esphome_project_name
+  #   disabled_by_default: $esphome_project_name_disabled
+  #   icon: "mdi:information-box"
+  #   entity_category: "diagnostic"
+  #   update_interval: 600s
+  #   lambda: |-
+  #     return { ESPHOME_PROJECT_NAME };
 
 button:
   - platform: safe_mode
