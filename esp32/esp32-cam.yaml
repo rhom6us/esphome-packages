@@ -27,6 +27,7 @@ esp32_camera:
     pin:
       number: 0
       allow_other_uses: true
+      ignore_strapping_warning: true
     frequency: 20MHz
   i2c_pins:
     sda: 26
@@ -57,5 +58,6 @@ binary_sensor:
     pin:
       number: 0
       allow_other_uses: true
+      ignore_strapping_warning: true
     name: $button_builtin_name
     internal: $button_builtin_internal

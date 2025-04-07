@@ -30,7 +30,9 @@ light:
 
 binary_sensor:
   - platform: gpio
-    pin: BUTTON
+    pin:
+      number: BUTTON
+      ignore_strapping_warning: true
     id: button_builtin
     name: $button_builtin_name
     internal: $button_builtin_internal
