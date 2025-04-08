@@ -10,6 +10,7 @@ substitutions:
   esphome_project_name_disabled: 'false'
 
 logger:
+  level: VERBOSE
 
 select:
   - platform: logger
