@@ -6,7 +6,7 @@ esphome:
   friendly_name: $friendly_name
   project:
     name: "${project_author}.${name}"
-    version: $project_version
+    version: '$project_version'
 
 api:
   encryption:
