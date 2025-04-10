@@ -1,0 +1,18 @@
+substitutions:
+  project_author: rhombus
+
+esphome:
+  name: $name
+  friendly_name: $friendly_name
+  project:
+    name: "${project_author}.${name}"
+    version: $version
+
+api:
+  encryption:
+    key: $api_key
+
+ota:
+  - platform: esphome
+    id: esphome_ota
+    password: $ota_password
