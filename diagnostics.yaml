@@ -5,9 +5,9 @@ substitutions:
   wifi_signal_disabled: 'false'
   esphome_version_disabled: 'false'
   uptime_text_disabled: 'false'
-  esphome_project_version_disabled: 'false'
-  esphome_project_version_detailed_disabled: 'false'
-  esphome_project_name_disabled: 'false'
+  # esphome_project_version_disabled: 'false'
+  # esphome_project_version_detailed_disabled: 'false'
+  # esphome_project_name_disabled: 'false'
 
 logger:
   level: VERBOSE
@@ -81,7 +81,7 @@ text_sensor:
   #     return { ESPHOME_PROJECT_VERSION };
 
   # - platform: template
-  #   name: "ESPHome Project Version Detailed"
+  #   name: "ESPHome Project Version (Detailed)"
   #   id: esphome_project_version_text_detailed
   #   disabled_by_default: $esphome_project_version_detailed_disabled
   #   icon: "mdi:information-box"

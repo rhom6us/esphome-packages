@@ -7,10 +7,9 @@
   - `wifi_signal_disabled`: false
   - `esphome_version_disabled`: false
   - `uptime_text_disabled`: false
-  - `wifi_info_text_disabled`: false
-  - `esphome_project_version_disabled`: false
+  <!-- - `esphome_project_version_disabled`: false
   - `esphome_project_version_detailed_disabled`: false
-  - `esphome_project_name_disabled`: false
+  - `esphome_project_name_disabled`: false -->
 - ### esphome.yaml
   - `api_key`
   - `ota_password`
