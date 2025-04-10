@@ -4,9 +4,9 @@ substitutions:
 esphome:
   name: $name
   friendly_name: $friendly_name
-  project:
-    name: "${project_author}.${name}"
-    version: '$project_version'
+  # project:
+  #   name: "${project_author}.${name}"
+  #   version: $project_version
 
 api:
   encryption:
