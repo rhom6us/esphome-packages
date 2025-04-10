@@ -14,6 +14,7 @@
   - `api_key`
   - `ota_password`
   - `project_author`: rhombus
+  - `project_version`
   ### config/wifi.yaml
   - `wifi_ssid`
   - `wifi_password`
