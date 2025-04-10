@@ -15,7 +15,7 @@
   - `api_key`
   - `ota_password`
   - #### optional:
-    - `min_version`: 2024.12.0
+    - `project_author`: rhombus
 - ### wifi.yaml
   - `wifi_ssid`
   - `wifi_password`
