@@ -27,3 +27,12 @@ packages:
           amp_lr_pin: 4
           amp_blk_pin: 5
           amp_dat_pin: 6
+      - components/bluetooth-proxy.yaml
+      - name: components/ultrasonic.yaml
+        vars:
+          sonar_trigger_pin: 1
+          sonar_echo_pin: 2
+      - name: components/ultrasonic-direction.yaml
+        vars:
+          sonar_trigger_pin: 1
+          sonar_echo_pin: 2
