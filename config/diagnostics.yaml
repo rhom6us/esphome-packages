@@ -3,7 +3,7 @@ substitutions:
   node_status_disabled: 'false'
   uptime_seconds_disabled: 'false'
   wifi_signal_disabled: 'false'
-  esphome_version_disabled: 'false'
+  esphome_version_disabled: 'true'
   uptime_text_disabled: 'false'
   # esphome_project_version_disabled: 'false'
   # esphome_project_version_detailed_disabled: 'false'
@@ -24,10 +24,19 @@ binary_sensor:
     device_class: connectivity
     disabled_by_default: $node_status_disabled
 
+time:
+  - platform: homeassistant
+    id: homeassistant_time
 sensor:
   - platform: uptime
+    type: timestamp
+    name: Boot timestamp
+    entity_category: "diagnostic"
+    device_class: duration
+    disabled_by_default: $uptime_seconds_disabled
+  - platform: uptime
     type: seconds
-    name: Uptime Sensor
+    name: Uptime (seconds)
     entity_category: "diagnostic"
     device_class: duration
     disabled_by_default: $uptime_seconds_disabled
@@ -44,31 +53,31 @@ text_sensor:
     name: "ESPHome Version"
     disabled_by_default: $esphome_version_disabled
   - platform: uptime
-    name: Uptime
+    name: Uptime (text)
     disabled_by_default: $uptime_text_disabled
   - platform: wifi_info
     ip_address:
       name: ESP IP Address
-      address_0:
-        name: ESP IP Address 0
-      address_1:
-        name: ESP IP Address 1
-      address_2:
-        name: ESP IP Address 2
-      address_3:
-        name: ESP IP Address 3
-      address_4:
-        name: ESP IP Address 4
+      # address_0:
+      #   name: ESP IP Address 0
+      # address_1:
+      #   name: ESP IP Address 1
+      # address_2:
+      #   name: ESP IP Address 2
+      # address_3:
+      #   name: ESP IP Address 3
+      # address_4:
+      #   name: ESP IP Address 4
     ssid:
       name: ESP Connected SSID
-    bssid:
-      name: ESP Connected BSSID
+    # bssid:
+    #   name: ESP Connected BSSID
     mac_address:
       name: ESP Mac Wifi Address
-    scan_results:
-      name: ESP Latest Scan Results
-    dns_address:
-      name: ESP DNS Address
+    # scan_results:
+    #   name: ESP Latest Scan Results
+    # dns_address:
+    #   name: ESP DNS Address
 
   # - platform: template
   #   name: "ESPHome Project Version"
