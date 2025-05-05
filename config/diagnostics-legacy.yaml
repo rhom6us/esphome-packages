@@ -52,9 +52,9 @@ text_sensor:
   - platform: version
     name: "ESPHome Version"
     disabled_by_default: $esphome_version_disabled
-  - platform: uptime
-    name: Uptime (text)
-    disabled_by_default: $uptime_text_disabled
+  # - platform: uptime
+  #   name: Uptime (text)
+  #   disabled_by_default: $uptime_text_disabled
   - platform: wifi_info
     ip_address:
       name: ESP IP Address
