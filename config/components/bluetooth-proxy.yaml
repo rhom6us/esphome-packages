@@ -15,3 +15,27 @@ esp32_ble_tracker:
 
 bluetooth_proxy:
   active: $ble_proxy_active_scan
+#   cache_services:
+#   connections:
+#     - esp32_ble_id: w00t
+
+#   active: !lambda return true;
+
+# globals:
+#   - id: active_scan
+#     type: bool
+# switch:
+#   - platform: template
+#     id: huzza
+#     name: "Active Scan"
+#     lambda: return id(active_scan);
+#     restore_mode: RESTORE_DEFAULT_ON
+#     turn_on_action:
+#       # - esp32_ble_tracker.stop_scan:
+#       - lambda: id(huzza).set_scan_active(id(active_scan) = true);
+#       # - esp32_ble_tracker.start_scan:
+#     turn_off_action:
+#       then:
+#         # - esp32_ble_tracker.stop_scan:
+#         - lambda: id(huzza).set_scan_active(id(active_scan) = false);
+#         # - esp32_ble_tracker.start_scan:
