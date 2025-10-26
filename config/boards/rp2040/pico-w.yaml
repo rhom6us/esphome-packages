@@ -7,7 +7,7 @@ rp2040:
 
 light:
   - platform: status_led
-    pin: LED #GP25
+    pin: GPIO25
     name: $led_builtin_name
     internal: $led_builtin_internal
 
