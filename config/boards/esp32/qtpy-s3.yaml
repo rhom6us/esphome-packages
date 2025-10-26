@@ -27,14 +27,14 @@ esp32:
 #     board_build.flash_mode: dio
 power_supply:
   - id: neopixel_builtin_power
-    pin: GPIO38
+    pin: NEOPIXEL_POWER #GPIO38
 light:
   - platform: esp32_rmt_led_strip
     id: neopixel_builtin
     rgb_order: GRB
     is_rgbw: True
     # use_psram: false
-    pin: GPIO39
+    pin: PIN_NEOPIXEL #GPIO39 RGB_BUILTIN LED_BUILTIN
     power_supply: neopixel_builtin_power
     num_leds: 1
     # rmt_channel: 0
