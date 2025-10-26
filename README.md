@@ -57,12 +57,16 @@
   - `neopixel_builtin_internal`: true
   - `button_builtin_name`: "Built-in Button"
   - `button_builtin_internal`: true
-### config/boards/esp32/qtpy-s3.yaml
-- `neopixel_builtin_name`: "Built-in Neopixel"
-- `neopixel_builtin_internal`: true
-- `neopixel_builtin_use_psram`: true
-- `button_builtin_name`: "Built-in Button"
-- `button_builtin_internal`: true
+  ### config/boards/esp32/qtpy-s3.yaml
+  - `neopixel_builtin_name`: "Built-in Neopixel"
+  - `neopixel_builtin_internal`: true
+  - `neopixel_builtin_use_psram`: true
+  - `button_builtin_name`: "Built-in Button"
+  - `button_builtin_internal`: true
+  ### config/boards/rp2040/pico-w.yanl
+  - `led_builtin_name`: "Built-in LED"
+  - `led_builtin_internal`: true
+## Components:
 ### config/components/bluetooth-proxy.yaml
 - `ble_proxy_active_scan`: false
 ### config/components/media-adf.yaml
