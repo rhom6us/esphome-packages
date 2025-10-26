@@ -1,0 +1,14 @@
+substitutions:
+  led_builtin_name: 'Built-in LED'
+  led_builtin_internal: 'true'
+
+rp2040:
+  board: rpipicow
+
+light:
+  - platform: status_led
+    name: "Switch state"
+    pin: LED #GP25
+    name: $led_builtin_name
+    internal: $led_builtin_internal
+
